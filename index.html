@@ -47,7 +47,7 @@
 
         .layout {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 300px 1fr 2fr;
             gap: 1.5rem;
             align-items: start;
         }
@@ -210,6 +210,89 @@
             position: sticky;
             top: 2rem;
         }
+
+        .tool-list {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            height: 100%;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .tool-item {
+            padding: 0.75rem;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .tool-item:hover {
+            background-color: var(--gray-100);
+            border-color: var(--gray-300);
+        }
+
+        .tool-item.active {
+            background-color: var(--gray-100);
+            border-color: var(--primary-color);
+        }
+
+        .save-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .saved-tools {
+            margin-top: 1rem;
+        }
+
+        .tool-server {
+            font-size: 0.75rem;
+            color: var(--gray-700);
+            margin-top: 0.25rem;
+        }
+
+        .tool-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .saved-tool-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 0.75rem;
+            background-color: var(--gray-100);
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            border: 1px solid var(--gray-200);
+        }
+
+        .saved-tool-item:hover {
+            border-color: var(--gray-300);
+            background-color: white;
+        }
+
+        .saved-tool-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .icon-button {
+            padding: 0.25rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-700);
+        }
+
+        .icon-button:hover {
+            color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
@@ -217,6 +300,13 @@
         <h1>Tool Executor Demo</h1>
         
         <div class="layout">
+            <div class="tool-list">
+                <h2>Saved Tools</h2>
+                <div class="saved-tools" id="savedToolsList">
+                    <!-- Saved tools will be listed here -->
+                </div>
+            </div>
+
             <div class="connection-card">
                 <div class="card">
                     <h2>Connection Settings</h2>
@@ -250,7 +340,10 @@
                     </div>
                 </div>
                 <div class="tool-section">
-                    <button id="executeButton" class="primary-button" disabled>Execute Tool</button>
+                    <div class="button-group">
+                        <button id="executeButton" class="primary-button" disabled>Execute Tool</button>
+                        <button id="saveToolButton" class="secondary-button">Save Tool & Connection</button>
+                    </div>
                 </div>
                 <div class="tool-section">
                     <label>Result</label>
